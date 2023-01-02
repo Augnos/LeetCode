@@ -25,9 +25,56 @@ var detectCycle = function (head) {
         slow = slow.next;
         fast = fast.next.next;
 
-        // while loop detects cycle when fast and slow runners intersect.
+        // when loop is detected, begin searching for cycle start node
         if (slow === fast) {
-            return slow;
+            // our comparison lists for finding the cycle start:
+            // headA: head -> * -> tail
+            // headB: tail.next -> * -> tail (one cycle)
+
+            // declaring variables
+            let tail = slow;
+            let headA = head;
+            let headB = tail.next;
+            let aCount = 0, bCount = 0;
+
+            // edge cases
+            if (head === tail) return head;
+            if (tail.next === tail) return tail;
+
+            // declare runner, and increment count for headA list
+            let runner = headA;
+            while (runner !== tail) {
+                aCount++;
+                runner = runner.next;
+            }
+
+            // redeclare runner, and increment count for headB list
+            runner = headB;
+            while (runner !== tail) {
+                bCount++;
+                runner = runner.next;
+            }
+
+            // while the lengths mismatch, truncate the head of the longer list
+            while (aCount != bCount) {
+                if (aCount > bCount) {
+                    headA = headA.next;
+                    aCount--;
+                }
+                if (aCount < bCount) {
+                    headB = headB.next;
+                    bCount--;
+                }
+            }
+
+            // compare the lists one node at a time
+            // the first matching node is where lists intersect
+            while (headA && headB) {
+                if (headA === headB) return headA;
+                headA = headA.next
+                headB = headB.next
+            }
+
         }
     }
     return null;
