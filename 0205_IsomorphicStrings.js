@@ -13,7 +13,7 @@ var isIsomorphic = function (s, t) {
     if (s.length != t.length) return false;
 
     // declare new object to map strings
-    let map = new Object();
+    let map = {};
 
     for (i = 0; i < s.length; i++) {
         // If character in s isn't mapped, but t is, return false
