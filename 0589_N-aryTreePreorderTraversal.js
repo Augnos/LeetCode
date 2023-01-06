@@ -44,9 +44,9 @@ var preorder = function (root) {
         output.push(top.val);
 
         // push children to stack in reverse order
-        for (i=top.children.length-1; i >=0; i--){
-            stack.push(top.children[i])
-        }
+        top.children.reverse().forEach(child => {
+            stack.push(child)
+        });
     }
 
     return output;
