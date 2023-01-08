@@ -19,19 +19,14 @@ function TreeNode(val) {
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function (root, p, q) {
-    let ancestor = root;
-
     while (true) {
-        // if ancestor matches p or q node, return that node
-        if (ancestor == p || ancestor == q) return ancestor;
+        // if p and q are both less than root, root becomes its left child
+        if (p.val < root.val && q.val < root.val) root = root.left;
 
-        // if p and q are both less than ancestor, ancestor becomes its left child
-        if (p.val < ancestor.val && q.val < ancestor.val) ancestor = ancestor.left;
+        // else if p and q are both greater than root, root becomes its right child
+        else if (p.val > root.val && q.val > root.val) root = root.right;
 
-        // else if p and q are both greater than ancestor, ancestor becomes its left child
-        else if (p.val > ancestor.val && q.val > ancestor.val) ancestor = ancestor.right;
-
-        // else if children diverge, ancestor is the lowest common ancestor, and is returned
-        else return ancestor;
+        // else if children diverge, root is the lowest common ancestor, and is returned
+        else return root;
     }
 };
