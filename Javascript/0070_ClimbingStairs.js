@@ -24,7 +24,7 @@ var climbStairs = function (n) {
 };
 
 console.log(climbStairs(1))
-console.log(climbStairs(3))
+console.log(climbStairs(4))
 console.log(climbStairs(5))
 console.log(climbStairs(10))
 console.log(climbStairs(50))
